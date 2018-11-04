@@ -22,10 +22,15 @@ public class PlayerController : MonoBehaviour {
 		
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
-		if(Input.GetKey(KeyCode.Space) && isGrounded()){
-			rb.AddForce (0, 500f, 0);
-		}
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+		if(Input.GetKey(KeyCode.Space) && isGrounded()){
+			rb.AddForce (0, 300f, 0);
+		}
+		if (Input.GetKey (KeyCode.R)) {
+			transform.position = new Vector3 (0, 10, 0);
+			rb.AddForce (0, 9.8f, 0);
+		}
+
 
 		rb.AddForce (movement * speed);
 	}
@@ -40,11 +45,15 @@ public class PlayerController : MonoBehaviour {
 
 	void setCountText () {
 		CountText.text = "Count: " + count.ToString ();
-		if (count >= 12) {
-			winText.text = "You Win!!";
-		}
+		Win ();
 	}
 	bool isGrounded() {
 		return Physics.Raycast (transform.position, Vector3.down, distanceToGround);
+	}
+	void Win(){
+		if (count >= 12) {
+			winText.text = "You Win!!";
+			transform.Rotate (new Vector3(15,30,45) * Time.deltaTime * Time.deltaTime);
+		}
 	}
 }
