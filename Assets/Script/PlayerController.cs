@@ -8,11 +8,10 @@ public class PlayerController : MonoBehaviour {
 	public Text winText;
 	public float distanceToGround = 0.5f;
 	private Rigidbody rb;
-	private int count;
-
-
+	public int count;
 
 	void Start() {
+		
 		setCountText ();
 		count = 0;
 		rb = GetComponent<Rigidbody> ();
