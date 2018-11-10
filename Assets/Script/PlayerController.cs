@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
 	public float distanceToGround = 0.5f;
 	private Rigidbody rb;
 	public int count;
-
+	public int MaxCount;
 	void Start() {
 		
 		setCountText ();
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour {
 		return Physics.Raycast (transform.position, Vector3.down, distanceToGround);
 	}
 	void Win(){
-		if (count >= 12) {
+		if (count >= MaxCount) {
 			winText.text = "You Win!!";
 			transform.Rotate (new Vector3(15,30,45) * Time.deltaTime * Time.deltaTime);
 		}
